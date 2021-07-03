@@ -1,0 +1,606 @@
+#include<curses.h>
+#include<iostream>
+#include<windows.h>
+#include<stdlib.h>
+#include<ctime>
+using namespace std;
+int main()
+{
+ initscr();
+ cbreak();
+ nonl();
+ noecho();
+ nodelay(stdscr,TRUE);
+ intrflush(stdscr,FALSE);
+ keypad(stdscr,TRUE);
+ refresh();
+ mvaddch(13,60,'o');
+ refresh();
+ Sleep(100);
+ clear();
+ int a,x=13,y=60,b,c;
+ srand(time(NULL));
+ a=rand()%4+1;
+ if(a==1)
+ {
+  y--;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(100);
+ clear();
+ }
+ else if(a==2)
+ {
+  x++;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(100);
+ clear();
+ }
+ else if(a==3)
+ {
+  y++;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(100);
+ clear();
+ }
+ else if(a==4)
+ {
+  x--;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(100);
+ clear();
+ }
+ while(true)
+ {
+ if(a==1)
+ {
+ mvaddch(y--,x,'0');
+ refresh();
+ Sleep(80); 
+ if(y!=0&&y!=23&&x!=0&&x!=79)
+ {
+  c=rand()%100+1;
+  if(c>=1&&c<=85)
+  {
+   a=1;
+  }
+  else if(c>=86&&c<=90)
+  {
+   a=2;
+  }
+  else if(c>=91&&c<=95)
+  {
+   a=3;
+  }
+  else if(c>=96&&c<=100)
+  {
+   a=4;
+  }
+ }
+ else
+ {
+  if(y==0&&x==0)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=2;
+   }
+   else
+   {
+    a=3;
+   }
+  }
+  else if(y==0&&x==79)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=4;
+   }
+   else
+   {
+    a=3;
+   }
+  }
+  else if(y==23&&x==0)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=1;
+   }
+   else
+   {
+    a=2;
+   }
+  }
+  else if(y==23&&x==79)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=1;
+   }
+   else
+   {
+    a=4;
+   }
+  }
+  else if(y==0&&(x!=0&&x!=79))
+  {
+   y++;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(100);
+ clear();
+  }
+  else if(y==23&&(x!=0&&x!=79))
+  {
+   c=rand()%3+1;
+   if(c==1)
+   {
+    a=1;
+   }
+   else if(c==2)
+   {
+    a=3;
+   }
+   else
+   {
+    a=4;
+   }
+  }
+  else if(x==0&&(y!=0&&y!=23))
+  {
+   c=rand()%3+1;
+   if(c==1)
+   {
+    a=2;
+   }
+   else if(c==2)
+   {
+    a=3;
+   }
+   else
+   {
+    a=1;
+   }
+  }
+  else if(x==79&&(y!=0&&y!=23))
+  {
+   c=rand()%3+1;
+   if(c==1)
+   {
+    a=4;
+   }
+   else if(c==2)
+   {
+    a=3;
+   }
+   else
+   {
+    a=1;
+   }
+  }
+ }
+ }
+ if(a==2)
+ {
+   x++;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(80);
+  if(y!=0&&y!=23&&x!=0&&x!=79)
+ {
+  c=rand()%100+1;
+  if(c>=1&&c<=85)
+  {
+   a=2;
+  }
+  else if(c>=86&&c<=90)
+  {
+   a=1;
+  }
+  else if(c>=91&&c<=95)
+  {
+   a=3;
+  }
+  else if(c>=96&&c<=100)
+  {
+   a=4;
+  }
+ }
+ else
+ {
+  if(y==0&&x==0)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=2;
+   }
+   else
+   {
+    a=3;
+   }
+  }
+  else if(y==0&&x==79)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=4;
+   }
+   else
+   {
+    a=3;
+   }
+  }
+  else if(y==23&&x==0)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=1;
+   }
+   else
+   {
+    a=2;
+   }
+  }
+  else if(y==23&&x==79)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=1;
+   }
+   else
+   {
+    a=4;
+   }
+  }
+  else if(y==0&&(x!=0&&x!=79))
+  {
+   y++;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(100);
+ clear();
+ x--;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(100);
+ clear();
+  }
+  else if(y==23&&(x!=0&&x!=79))
+  {
+   c=rand()%3+1;
+   if(c==1)
+   {
+    a=1;
+   }
+   else if(c==2)
+   {
+    a=3;
+   }
+   else
+   {
+    a=4;
+   }
+  }
+  else if(x==0&&(y!=0&&y!=23))
+  {
+   c=rand()%3+1;
+   if(c==1)
+   {
+    a=2;
+   }
+   else if(c==2)
+   {
+    a=3;
+   }
+   else
+   {
+    a=1;
+   }
+  }
+  else if(x==79&&(y!=0&&y!=23))
+  {
+   c=rand()%3+1;
+   if(c==1)
+   {
+    a=4;
+   }
+   else if(c==2)
+   {
+    a=3;
+   }
+   else
+   {
+    a=1;
+   }
+  }
+ }
+ }
+ if(a==3)
+ {
+  y--;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(80);
+  if(y!=0&&y!=23&&x!=0&&x!=79)
+ {
+  c=rand()%100+1;
+  if(c>=1&&c<=85)
+  {
+   a=3;
+  }
+  else if(c>=86&&c<=90)
+  {
+   a=2;
+  }
+  else if(c>=91&&c<=95)
+  {
+   a=1;
+  }
+  else if(c>=96&&c<=100)
+  {
+   a=4;
+  }
+ }
+ else
+ {
+  if(y==0&&x==0)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=2;
+   }
+   else
+   {
+    a=3;
+   }
+  }
+  else if(y==0&&x==79)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=4;
+   }
+   else
+   {
+    a=3;
+   }
+  }
+  else if(y==23&&x==0)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=1;
+   }
+   else
+   {
+    a=2;
+   }
+  }
+  else if(y==23&&x==79)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=1;
+   }
+   else
+   {
+    a=4;
+   }
+  }
+  else if(y==0&&(x!=0&&x!=79))
+  {
+   y++;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(100);
+ clear();
+ x++;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(100);
+ clear();
+  }
+  else if(y==23&&(x!=0&&x!=79))
+  {
+   c=rand()%3+1;
+   if(c==1)
+   {
+    a=1;
+   }
+   else if(c==2)
+   {
+    a=3;
+   }
+   else
+   {
+    a=4;
+   }
+  }
+  else if(x==0&&(y!=0&&y!=23))
+  {
+   c=rand()%3+1;
+   if(c==1)
+   {
+    a=2;
+   }
+   else if(c==2)
+   {
+    a=3;
+   }
+   else
+   {
+    a=1;
+   }
+  }
+  else if(x==79&&(y!=0&&y!=23))
+  {
+   c=rand()%3+1;
+   if(c==1)
+   {
+    a=4;
+   }
+   else if(c==2)
+   {
+    a=3;
+   }
+   else
+   {
+    a=1;
+   }
+  }
+ }
+ }
+ if(a==4)
+ {
+   x--;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(80);
+  if(y!=0&&y!=23&&x!=0&&x!=79)
+ {
+  c=rand()%100+1;
+  if(c>=1&&c<=85)
+  {
+   a=4;
+  }
+  else if(c>=86&&c<=90)
+  {
+   a=2;
+  }
+  else if(c>=91&&c<=95)
+  {
+   a=3;
+  }
+  else if(c>=96&&c<=100)
+  {
+   a=1;
+  }
+ }
+ else
+ {
+  if(y==0&&x==0)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=2;
+   }
+   else
+   {
+    a=3;
+   }
+  }
+  else if(y==0&&x==79)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=4;
+   }
+   else
+   {
+    a=3;
+   }
+  }
+  else if(y==23&&x==0)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=1;
+   }
+   else
+   {
+    a=2;
+   }
+  }
+  else if(y==23&&x==79)
+  {
+   c=rand()%100+1;
+   if(c>=1&&c>=50)
+   {
+    a=1;
+   }
+   else
+   {
+    a=4;
+   }
+  }
+  else if(y==0&&(x!=0&&x!=79))
+  {
+   x++;
+ mvaddch(y,x,'0');
+ refresh();
+ Sleep(100);
+ clear();
+  }
+  else if(y==23&&(x!=0&&x!=79))
+  {
+   c=rand()%3+1;
+   if(c==1)
+   {
+    a=1;
+   }
+   else if(c==2)
+   {
+    a=3;
+   }
+   else
+   {
+    a=4;
+   }
+  }
+  else if(x==0&&(y!=0&&y!=23))
+  {
+   c=rand()%3+1;
+   if(c==1)
+   {
+    a=2;
+   }
+   else if(c==2)
+   {
+    a=3;
+   }
+   else
+   {
+    a=1;
+   }
+  }
+  else if(x==79&&(y!=0&&y!=23))
+  {
+   c=rand()%3+1;
+   if(c==1)
+   {
+    a=4;
+   }
+   else if(c==2)
+   {
+    a=3;
+   }
+   else
+   {
+    a=1;
+   }
+  }
+ }
+ }
+ clear();
+ }
+ endwin();
+}
