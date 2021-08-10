@@ -12,5 +12,6 @@ int f (int n, int x)
 }
 int main()
     {
-        cout << double((96 * 6 + 92 * 3 + 91 * 3 + 95 * 2 + 89 * 2 + 90 * 3 + 81 * 3 + 90 * 3)/25);
+        string s ="think";
+        cout << s.substr(2, 3);
     }
