@@ -47,10 +47,10 @@ int main()
                     if(curr_adress>max)
                     max = curr_adress;
                 }
-                p[i][curr_adress] = t;
+                p[i][curr_adress] = t; //把當前的二維陣列的位置加上空白
                 ++curr_adress;
         }
-        ans_adress[i] = curr_adress;
+        ans_adress[i] = curr_adress;//紀錄每個的尾巴
     }
      int distance;//other space and max space
      for (int i = 0; i < x; i++)
@@ -59,7 +59,7 @@ int main()
          {
              if (p[i][j] == ' ')//first space 
              {
-                 distance = max - j;
+                 distance = max - j;//計算要對齊的空白數
                  break;
              }
          }

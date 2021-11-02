@@ -1,19 +1,25 @@
 #include<iostream>
 using namespace std;
+void swap(int &a,int &b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
 int main()
 {
-    int n =5,count=0;
-    for (int i = 1; i <= n;i++)
+    int *p = new int[5];
+    int *q = new int[5];
+    for (int i = 0; i < 5;i++)
     {
-        for (int j = 1; j <= i;j++)
-        {
-            for (int k = 1; k <= j;k++)
-            {
-                count++;
-            }
-        }
+        p[i] = i;
+        q[i] = 2 * i;
     }
-    cout << count;
+    swap(p, q);
+    for (int j = 0; j < 5;j++)
+    {
+        cout <<"p: "<< p[j]<<" q: "<<q[j]<<endl;
+    }
 }
 //     #include<iostream>
 // //#include<stdio.h>

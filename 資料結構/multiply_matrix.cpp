@@ -4,6 +4,7 @@
 #include<stdlib.h>
 using namespace std ;
 void multiply_matrix(int **a,int **b,int **c,int n);
+void Add(int **a, int **b, int **c, int n);
 int main(){
 	int **a,**b,**c,n;
 	n = 100;
@@ -48,7 +49,14 @@ int main(){
 		}
 	}
 	
-	//multiply_matrix(a,b,c,n);
+	//select your type
+	// -------------------------
+	
+	// multiply_matrix(a,b,c,n);
+	Add(a,b,c,n);
+
+	//--------------------------
+	//
 	// for(int i=0 ; i<n ; i++){
 	// 	for(int j=0 ; j<n ; j++){
 	// 		cout <<c[i][j]<<" ";
@@ -72,4 +80,11 @@ void multiply_matrix(int **a,int **b,int **c,int n){
             }
         }
     }
+}
+void Add(int **a,int **b,int **c,int n){
+	for(int i=0 ; i<n ; i++){
+		for(int j=0 ; j<n ; j++){
+			c[i][j] = a[i][j]+b[i][j];
+		}
+	}
 }

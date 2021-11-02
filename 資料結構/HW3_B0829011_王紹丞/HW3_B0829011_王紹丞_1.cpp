@@ -10,8 +10,8 @@ class Quadratic
         Quadratic();
         Quadratic(double A, double B, double C);
         Quadratic operator+(Quadratic &sec);
-        friend ostream& operator<<(ostream& ostr,Quadratic & sec); //¯x°}ªº¿é¥X¹L¸ü¨ç¦¡
-	    friend istream& operator>>(istream& istr,Quadratic & sec); //¯x°}ªº¿é¤J¹L¸ü¨ç¦¡
+        friend ostream& operator<<(ostream& ostr,Quadratic & sec); //çŸ©é™£çš„è¼¸å‡ºéè¼‰å‡½å¼
+	    friend istream& operator>>(istream& istr,Quadratic & sec); //çŸ©é™£çš„è¼¸å…¥éè¼‰å‡½å¼
         double Eval(double x);
 };
 Quadratic ::Quadratic()
@@ -34,24 +34,24 @@ Quadratic Quadratic::operator+(Quadratic &sec)
 }
 ostream &operator<<(ostream &ostr,Quadratic & sec)
 {
-    bool first[2]={false,false};//¨M©wÀY¬O½Ö if a=0,b=1 b¬°ÀY
+    bool first[2]={false,false};
     if(sec.a!=0)
         first[0] = true;
     if(first[0]==false&&sec.b!=0)
         first[1] = true;
-    if(sec.a<0)//­t¸¹ª½±µ¿é¥X
-        ostr << sec.a << "x^2"; 
-    else if (sec.a == 1)//¤£¥Î¿é¥X1
+    if(sec.a<0)
+        ostr << sec.a << "x^2";
+    else if (sec.a == 1)
             ostr<< "x^2";
     else if(sec.a>1)
         ostr << sec.a << "x^2";
     if (sec.b < 0)
         ostr << sec.b << "x";
-    else if(sec.b==1&&first[0])//¥Nªí«Y¼ÆÀY¬Ox^2 ©Ò¥H­n¥[¤W+
+    else if(sec.b==1&&first[0])
         ostr << "+x";
-    else if(sec.b==1&&first[0]==false) //¥Nªí«Y¼ÆÀY¬Ox ¤£¥Î¥[¤W+
+    else if(sec.b==1&&first[0]==false)
         ostr << sec.b << "x";
-    else if(first[0]&&sec.b>1) 
+    else if(first[0]&&sec.b>1)
         ostr <<"+"<< sec.b << "x";
     else if(first[0]==false&&sec.b>1)
         ostr << sec.b << "x";
