@@ -249,13 +249,13 @@ void G::DFSVisit(int **a, int n, int i)
 {
     int j;
     Dcolor[i] = 1;
-    for (j = 0; j < n; j++)//check forest 
+    for (j = 0; j < n; j++)
     {
         if (a[i][j] == 1 && Dcolor[j] == 0)
         {
             Dprt[j] = i + 1;
             cout<<"->"<<j;
-            DFSVisit(a, n, j);//search next vertex
+            DFSVisit(a, n, j);
         }
     }
     Dcolor[i] = 2;
@@ -267,7 +267,7 @@ void G::getDFS(int **b, int n)
     {
         k = Dprt[i];
         if (k > 0)
-            b[k - 1][i] = 1;// x->y b[x][y]
+            b[k - 1][i] = 1;
     }
 }
 void G::getBFS(int **b, int n)

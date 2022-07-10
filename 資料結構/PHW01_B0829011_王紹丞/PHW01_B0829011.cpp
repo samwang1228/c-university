@@ -18,13 +18,15 @@ class Sorting
         {
             ptr = a;
         }
-                                  
+        void InsertionSort(const int n);
+
     private:
         void adjust(const int root, const int n);
         int *ptr;
         void swap(int &a, int &b);
         void merge(int *initList,int *result, const int L,const int m,const int n );
         void MergePass(int *initList,int *result, const int n, const int subSize);
+        void insert(int &e, int *a, int i);
 };
 int main()
 {
@@ -48,14 +50,14 @@ int main()
     for (int i = 0; i < size;i++)
     {
         temp[i]=(long long)(( double)(rand()*49999)/RAND_MAX)+1;
-        //temp[i] = randint(1, 50000);
+        //temp[] = randint(1, 50000);
     }
     temp[size] = INT_MAX; // in order not to out of range  
     for (int j = 0; j < size;j++)
     {
         adTemp[j + 1] = temp[j];
     }
-    cout << "Please input mode of sort(1:Quick 2:Merge 3:Heap)" << endl;
+    cout << "Please input mode of sort(1:Quick 2:Merge 3:Heap 4:insert)" << endl;
     // for (int i = 0; i < size;i++)
     // {
     //     cout << temp[i]<<" ";
@@ -76,17 +78,25 @@ int main()
     if(mode==2)
     {
         answer.eqPtr(adTemp);
-        answer.print(size);
+      //  answer.print(size);
         answer.MergeSort(adTemp,size);
         cout << "The sorting data: ";
-        answer.print(size);
+       // answer.print(size);
     }
     if(mode==3)
+    {
+        answer.eqPtr(temp);
+        answer.print(size);
+        cout << "The sorting data: ";
+        answer.HeapSort(size);
+        answer.print(size);
+    }
+    if(mode==4)
     {
         answer.eqPtr(adTemp);
         answer.print(size);
         cout << "The sorting data: ";
-        answer.HeapSort(size);
+        answer.InsertionSort(size);
         answer.print(size);
     }
     QueryPerformanceCounter(&endTime);
@@ -106,23 +116,23 @@ void Sorting::adjust (const int root, const int n)
     int i;
     for (i = 2 * root; i <= n;i*=2)
     {
-        if(i<n&&ptr[i]<ptr[i+1])
+        if(i<n&&ptr[i]<ptr[i+1])//選右邊
             i++;
-        if(key>=ptr[i])
+        if(key>=ptr[i]) //代表此區間已排完
             break;
-        ptr[i / 2] = ptr[i];
+        ptr[i / 2] = ptr[i]; //將兒子往上移
     }
     //cout << i << "\n";
-    ptr[i / 2] = key;
+    ptr[i / 2] = key; //補齊位置
 }
 void Sorting::HeapSort(const int n)
 {
-    for (int i = n / 2; i >= 1;i--)
+    for (int i = n / 2; i >= 1;i--)//從i/2開始找
         adjust(i, n);
     //print(n);
     for (int j = n -1; j >= 1;j--)
     {
-        swap(ptr[1], ptr[j+1]);
+        swap(ptr[1], ptr[j+1]);//把max換到後面
         adjust(1, j);
         //print(n);
     }
@@ -146,7 +156,8 @@ void Sorting::merge(int *initList,int *result,const int L,const int m,const int 
     int i1, i2, iResult;
     for (i1 = L, iResult = L, i2 = m + 1; i1 <= m && i2 <= n;iResult++)
     {
-        if(initList[i1]<=initList[i2])
+        //兩個list i1(前半) i2(後半)
+        if(initList[i1]<=initList[i2])//較大的放進result並且將位置往後移
         {
             result[iResult] = initList[i1];
             i1++;
@@ -216,11 +227,11 @@ void Sorting:: QuickSort ( const int left, const int right)
 			j=right+1,
 			pivot=ptr[left];
 		do{
-			do i++; while( ptr[i]<pivot );
-			do j--; while( ptr[j]>pivot );
-			if ( i<j ) swap( ptr[i],ptr[j] );
+			do i++; while( ptr[i]<pivot ); //選左邊比樞紐大的
+			do j--; while( ptr[j]>pivot ); //選右邊比樞紐小的
+			if ( i<j ) swap( ptr[i],ptr[j] ); 
 		}while( i<j );
-		swap ( ptr[left],ptr[j] );
+		swap ( ptr[left],ptr[j] ); //把樞紐移位切割成兩個list
 		
 		QuickSort(left,j-1 );
 		QuickSort(j+1,right );
@@ -231,4 +242,23 @@ void Sorting::printAll(int n)
     for (int i = 0; i < n; i++)
         cout <<setw(5)<< ptr[i] << " ";
     cout << endl;
+}
+void Sorting::InsertionSort(const int n)
+{
+    for (int j = 2; j <= n;j++)
+    {
+        int temp = ptr[j];
+        insert(temp, ptr, j - 1);
+    }
+
+}
+void Sorting::insert(int &e, int *a, int i)
+{
+    a[0] = e;
+    while(e<a[i])//if break 代表e為最大
+    {
+        a[i + 1] = a[i]; //往後移空位置
+        i--;
+    }
+    a[i + 1] = e;
 }
